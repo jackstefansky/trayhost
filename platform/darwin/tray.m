@@ -88,7 +88,7 @@ void exit_loop() {
     [NSApp stop:nil];
 }
 
-int init(const char * title, struct image img) {
+int init(const char * title, struct image img, int width, int height) {
     [NSAutoreleasePool new];
 
     [NSApplication sharedApplication];
@@ -111,7 +111,7 @@ int init(const char * title, struct image img) {
             [self userNotificationCenter: nil didActivateNotification: launchNotification];
     }*/
 
-    NSSize iconSize = NSMakeSize(16, 16);
+    NSSize iconSize = NSMakeSize(width, height);
     NSImage * icon = [[NSImage alloc] initWithSize:iconSize];
     NSData * iconData = [NSData dataWithBytes:img.bytes length:img.length];
     [icon addRepresentation:[NSBitmapImageRep imageRepWithData:iconData]];
