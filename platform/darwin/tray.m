@@ -111,13 +111,13 @@ int init(const char * title, struct image img, int width, int height) {
             [self userNotificationCenter: nil didActivateNotification: launchNotification];
     }*/
 
-    NSSize iconSize = NSMakeSize(width, height);
+    NSSize iconSize = NSMakeSize(85, 17);
     NSImage * icon = [[NSImage alloc] initWithSize:iconSize];
     NSData * iconData = [NSData dataWithBytes:img.bytes length:img.length];
     [icon addRepresentation:[NSBitmapImageRep imageRepWithData:iconData]];
     [icon setTemplate:YES];
 
-    NSStatusItem * statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:4] retain];
+    NSStatusItem * statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setMenu:appMenu];
     [statusItem setImage:icon];
     [statusItem setHighlightMode:YES];
