@@ -49,7 +49,7 @@ func Initialize(title string, imageData []byte, items []MenuItem) {
 	defer freeImg()
 
 	// Initialize menu.
-	C.init(cTitle, img)
+	C.init(cTitle, img, 80, 17)
 
 	menuItems = items
 	for id, item := range menuItems {
