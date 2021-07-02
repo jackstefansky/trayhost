@@ -113,10 +113,11 @@ int init(const char * title, struct image img, int width, int height) {
 
     NSSize iconSize = NSMakeSize(width, height);
     NSImage * icon = [[NSImage alloc] initWithSize:iconSize];
+    
     NSData * iconData = [NSData dataWithBytes:img.bytes length:img.length];
-    [icon addRepresentation:[NSBitmapImageRep imageRepWithData:iconData]];
+    /* [icon addRepresentation:[NSBitmapImageRep imageRepWithData:iconData]];
     [icon setTemplate:YES];
-
+ */
     NSStatusItem * statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setMenu:appMenu];
     [statusItem setImage:icon];
