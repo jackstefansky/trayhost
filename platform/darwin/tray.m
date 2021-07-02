@@ -116,7 +116,7 @@ int init(const char * title, struct image img, int width, int height) {
     NSData * iconData = [NSData dataWithBytes:img.bytes length:img.length];
 
     NSBitmapImageRep * bitmapRep = [NSBitmapImageRep imageRepWithData:iconData];
-
+    [bitmapRep hasAlpha:YES]
     [icon addRepresentation: bitmapRep ];
     [icon setTemplate:YES];
 
