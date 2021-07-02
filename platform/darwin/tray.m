@@ -88,6 +88,22 @@ void exit_loop() {
     [NSApp stop:nil];
 }
 
+void update_status_item_icon(struct image img, int width, int height) {
+    NSSize iconSize = NSMakeSize(width, height);
+    NSImage * icon = [[NSImage alloc] initWithSize:iconSize];
+    NSData * iconData = [NSData dataWithBytes:img.bytes length:img.length];
+
+    NSBitmapImageRep * bitmapRep = [NSBitmapImageRep imageRepWithData:iconData];
+    [bitmapRep representationUsingType:NSPNGFileType properties:nil];
+
+
+    [icon addRepresentation: bitmapRep ];
+
+    NSStatusItem * statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+    [statusItem setImage:icon];
+}
+
+
 int init(const char * title, struct image img, int width, int height) {
     [NSAutoreleasePool new];
 
@@ -117,7 +133,8 @@ int init(const char * title, struct image img, int width, int height) {
 
     NSBitmapImageRep * bitmapRep = [NSBitmapImageRep imageRepWithData:iconData];
     [bitmapRep representationUsingType:NSPNGFileType properties:nil];
-    
+
+
     [icon addRepresentation: bitmapRep ];
     [icon setTemplate:YES];
 

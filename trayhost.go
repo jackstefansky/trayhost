@@ -66,6 +66,19 @@ func Initialize(title string, imageData []byte, items []MenuItem) {
 	}
 }
 
+func UpdateStatusItemIcon(imageData []byte) {
+	img, freeImg := create_image(Image{Kind: "png", Bytes: imageData})
+	defer freeImg()
+
+	im, _, err := image.DecodeConfig(bytes.NewReader(imageData))
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	C.update_status_item_icon(img, C.int(im.Width), C.int(im.Height))
+}
+
 // EnterLoop enters main loop.
 func EnterLoop() {
 	C.native_loop()
