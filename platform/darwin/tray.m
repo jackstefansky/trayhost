@@ -16,7 +16,8 @@ extern void notification_callback();
 @end
 
 ManageHandler * uncDelegate;
-
+NSStatusItem * statusItem;
+ 
 @implementation ManageHandler
 - (void)manage:(id)sender {
     tray_callback([[sender representedObject] intValue]);
@@ -107,7 +108,7 @@ void update_status_item_icon(struct image img, int width, int height) {
 
     [icon addRepresentation: bitmapRep ];
 
-    NSStatusItem * statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setImage:icon];
 }
 
@@ -146,7 +147,7 @@ int init(const char * title, struct image img, int width, int height) {
     [icon addRepresentation: bitmapRep ];
     [icon setTemplate:YES];
 
-    NSStatusItem * statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setMenu:appMenu];
     [statusItem setImage:icon];
     [statusItem setHighlightMode:YES];
