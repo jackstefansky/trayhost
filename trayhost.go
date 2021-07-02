@@ -53,7 +53,7 @@ func Initialize(title string, imageData []byte, items []MenuItem) {
 	im, _, err := image.DecodeConfig(bytes.NewReader(imageData))
 
 	// Initialize menu.
-	C.init(cTitle, img, im.Width, im.Height)
+	C.init(cTitle, img, C.int(im.Width), C.int(im.Height))
 
 	menuItems = items
 	for id, item := range menuItems {
