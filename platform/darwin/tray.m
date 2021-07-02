@@ -108,7 +108,7 @@ void update_status_item_icon(struct image img, int width, int height) {
 
     [icon addRepresentation: bitmapRep ];
 
-    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+    //statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setImage:icon];
 }
 
