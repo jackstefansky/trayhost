@@ -50,7 +50,7 @@ func Initialize(title string, imageData []byte, items []MenuItem) {
 	img, freeImg := create_image(Image{Kind: "png", Bytes: imageData})
 	defer freeImg()
 
-	im, _, err := image.DecodeConfig(bytes.NewReader(imageData))
+	im, _ := image.DecodeConfig(bytes.NewReader(imageData))
 
 	// Initialize menu.
 	C.init(cTitle, img, C.int(im.Width), C.int(im.Height))
