@@ -1,6 +1,7 @@
 package trayhost
 
 import (
+	"image"
 	"time"
 	"unsafe"
 )
@@ -48,8 +49,10 @@ func Initialize(title string, imageData []byte, items []MenuItem) {
 	img, freeImg := create_image(Image{Kind: "png", Bytes: imageData})
 	defer freeImg()
 
+	im, _, err := image.DecodeConfig(imageData)
+
 	// Initialize menu.
-	C.init(cTitle, img, 80, 17)
+	C.init(cTitle, img, im.Width, im.Height)
 
 	menuItems = items
 	for id, item := range menuItems {
