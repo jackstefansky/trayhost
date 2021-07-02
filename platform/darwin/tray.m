@@ -89,15 +89,7 @@ void exit_loop() {
 }
 
 void update_status_item_icon(struct image img, int width, int height) {
-    [NSAutoreleasePool new];
 
-    [NSApplication sharedApplication];
-
-    // This is needed to avoid having a dock icon (and entry in Cmd+Tab list).
-    // [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
-    // However, it causes the tooltip to not appear. So LSUIElement should be used instead.
-
-    appMenu = [[NSMenu new] autorelease];
 
     // Set self as NSUserNotificationCenter delegate.
     uncDelegate = [[ManageHandler alloc] init];
