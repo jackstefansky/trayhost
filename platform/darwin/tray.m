@@ -159,8 +159,8 @@ int init(const char * title, struct image img, int width, int height) {
 
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setMenu:appMenu];
-    [statusItem setImage:icon];
-    [statusItem setTitle:"TITLE"];
+   // [statusItem setImage:icon];
+    [statusItem setTitle:@"TITLE"];
     [statusItem setHighlightMode:YES];
     [statusItem setToolTip:[NSString stringWithUTF8String:title]];
     
