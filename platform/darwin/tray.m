@@ -17,7 +17,10 @@ extern void notification_callback();
 
 ManageHandler * uncDelegate;
 NSStatusItem * statusItem;
- 
+
+var statusBarItem: NSStatusItem!
+
+
 @implementation ManageHandler
 - (void)manage:(id)sender {
     tray_callback([[sender representedObject] intValue]);
