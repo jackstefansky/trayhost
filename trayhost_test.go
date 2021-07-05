@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/shurcooL/trayhost"
+	"github.com/jackstefansky/trayhost"
 )
 
 func Example() {
@@ -44,7 +44,6 @@ func Example() {
 		},
 		{
 			// Displaying notifications requires a proper app bundle and won't work without one.
-			// See https://godoc.org/github.com/shurcooL/trayhost#hdr-Notes.
 
 			Title: "Display Notification",
 			Handler: func() {
