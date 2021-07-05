@@ -114,47 +114,79 @@ void update_status_item_icon(struct image img, int width, int height) {
 
 
 int init(const char * title, struct image img, int width, int height) {
-    [NSAutoreleasePool new];
+    //[NSAutoreleasePool new];
+//
+    //[NSApplication sharedApplication];
+//
+    //// This is needed to avoid having a dock icon (and entry in Cmd+Tab list).
+    //// [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
+    //// However, it causes the tooltip to not appear. So LSUIElement should be used instead.
+//
+    //appMenu = [[NSMenu new] autorelease];
+//
+    //// Set self as NSUserNotificationCenter delegate.
+    //uncDelegate = [[ManageHandler alloc] init];
+    //NSLog(@"[NSUserNotificationCenter defaultUserNotificationCenter] -> %p", [NSUserNotificationCenter defaultUserNotificationCenter]);
+    //[[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate: uncDelegate];
+//
+    //// If we were opened from a user notification, do the corresponding action.
+    ///*{
+    //    NSUserNotification * launchNotification = [[aNotification userInfo] objectForKey: NSApplicationLaunchUserNotificationKey];
+    //    if (launchNotification)
+    //        [self userNotificationCenter: nil didActivateNotification: launchNotification];
+    //}*/
+//
+    //NSSize iconSize = NSMakeSize(width, height);
+    //NSImage * icon = [[NSImage alloc] initWithSize:iconSize];
+    //NSData * iconData = [NSData dataWithBytes:img.bytes length:img.length];
+//
+    //NSBitmapImageRep * bitmapRep = [NSBitmapImageRep imageRepWithData:iconData];
+    //[bitmapRep representationUsingType:NSPNGFileType properties:nil];
+//
+//
+    //[icon addRepresentation: bitmapRep ];
+    //[icon setTemplate:YES];
+//
+    //statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+    //[statusItem setMenu:appMenu];
+    //[statusItem setImage:icon];
+    //[statusItem setHighlightMode:YES];
+    //[statusItem setToolTip:[NSString stringWithUTF8String:title]];
+    //
 
-    [NSApplication sharedApplication];
 
-    // This is needed to avoid having a dock icon (and entry in Cmd+Tab list).
-    // [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
-    // However, it causes the tooltip to not appear. So LSUIElement should be used instead.
+    let statusBar = NSStatusBar.system
+        statusBarItem = statusBar.statusItem(
+            withLength: NSStatusItem.squareLength)
+        statusBarItem.button?.title = "🌯 TEST"
 
-    appMenu = [[NSMenu new] autorelease];
+        let statusBarMenu = NSMenu(title: "Cap Status Bar Menu")
+        statusBarItem.menu = statusBarMenu
 
-    // Set self as NSUserNotificationCenter delegate.
-    uncDelegate = [[ManageHandler alloc] init];
-    NSLog(@"[NSUserNotificationCenter defaultUserNotificationCenter] -> %p", [NSUserNotificationCenter defaultUserNotificationCenter]);
-    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate: uncDelegate];
+        statusBarMenu.addItem(
+            withTitle: "Order a burrito",
+            action: #selector(AppDelegate.orderABurrito),
+            keyEquivalent: "")
 
-    // If we were opened from a user notification, do the corresponding action.
-    /*{
-        NSUserNotification * launchNotification = [[aNotification userInfo] objectForKey: NSApplicationLaunchUserNotificationKey];
-        if (launchNotification)
-            [self userNotificationCenter: nil didActivateNotification: launchNotification];
-    }*/
+        statusBarMenu.addItem(
+            withTitle: "Cancel burrito order",
+            action: #selector(AppDelegate.cancelBurritoOrder),
+            keyEquivalent: "")
 
-    NSSize iconSize = NSMakeSize(width, height);
-    NSImage * icon = [[NSImage alloc] initWithSize:iconSize];
-    NSData * iconData = [NSData dataWithBytes:img.bytes length:img.length];
-
-    NSBitmapImageRep * bitmapRep = [NSBitmapImageRep imageRepWithData:iconData];
-    [bitmapRep representationUsingType:NSPNGFileType properties:nil];
-
-
-    [icon addRepresentation: bitmapRep ];
-    [icon setTemplate:YES];
-
-    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-    [statusItem setMenu:appMenu];
-    [statusItem setImage:icon];
-    [statusItem setHighlightMode:YES];
-    [statusItem setToolTip:[NSString stringWithUTF8String:title]];
 
     return 0;
 }
+
+
+    @objc func orderABurrito() {
+        print("Ordering a burrito!")
+    }
+
+
+    @objc func cancelBurritoOrder() {
+        print("Canceling your order :(")
+    }
+
 
 void set_clipboard_string(const char * string) {
     NSArray * types = [NSArray arrayWithObjects:NSPasteboardTypeString, nil];
