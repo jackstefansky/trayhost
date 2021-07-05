@@ -18,8 +18,6 @@ extern void notification_callback();
 ManageHandler * uncDelegate;
 NSStatusItem * statusItem;
 
-var statusBarItem: NSStatusItem!
-
 
 @implementation ManageHandler
 - (void)manage:(id)sender {
@@ -156,6 +154,17 @@ int init(const char * title, struct image img, int width, int height) {
     //[statusItem setHighlightMode:YES];
     //[statusItem setToolTip:[NSString stringWithUTF8String:title]];
     //
+
+
+
+    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+    [statusItem setMenu:appMenu];
+    [statusItem setImage:icon];
+    [statusItem setTitle:"TITLE"];
+    [statusItem setHighlightMode:YES];
+    [statusItem setToolTip:[NSString stringWithUTF8String:title]];
+    
+
 
 
     let statusBar = NSStatusBar.system
