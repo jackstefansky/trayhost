@@ -166,38 +166,8 @@ int init(const char * title, struct image img, int width, int height) {
     
 
 
-
-    let statusBar = NSStatusBar.system
-        statusBarItem = statusBar.statusItem(
-            withLength: NSStatusItem.squareLength)
-        statusBarItem.button?.title = "🌯 TEST"
-
-        let statusBarMenu = NSMenu(title: "Cap Status Bar Menu")
-        statusBarItem.menu = statusBarMenu
-
-        statusBarMenu.addItem(
-            withTitle: "Order a burrito",
-            action: #selector(AppDelegate.orderABurrito),
-            keyEquivalent: "")
-
-        statusBarMenu.addItem(
-            withTitle: "Cancel burrito order",
-            action: #selector(AppDelegate.cancelBurritoOrder),
-            keyEquivalent: "")
-
-
     return 0;
 }
-
-
-    @objc func orderABurrito() {
-        print("Ordering a burrito!")
-    }
-
-
-    @objc func cancelBurritoOrder() {
-        print("Canceling your order :(")
-    }
 
 
 void set_clipboard_string(const char * string) {
